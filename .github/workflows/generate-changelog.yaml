@@ -17,5 +17,5 @@ jobs:
       - name: Generate CHANGELOG.md
         uses: ganiulis/generate-changelog-action@main
         with:
-          repository-name: register-action
+          repository-name: generate-changelog-action
 
