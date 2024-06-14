@@ -1,0 +1,38 @@
+name: Generate CHANGELOG.md
+
+description: Generate a CHANGELOG.md of changes in your main branch.
+
+branding:
+  icon: list
+  color: yellow
+
+inputs:
+  repository-name:
+    description: Your repository name
+    required: true
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - name: Check out into this repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+ 
+    - name: Install Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3'
+        bundler-cache: true
+
+    - name: Install github_changelog_generator, generate the CHANGELOG.md, and push changes
+      shell: bash
+      run: |
+        gem install github_changelog_generator
+        github_changelog_generator -u ${{ github.repository_owner }} -p ${{ inputs.repository-name }}
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git add CHANGELOG.md
+        git commit -m 'chore: Update CHANGELOG.md'
+        git push --set-upstream origin main

@@ -1,2 +1,28 @@
-# generate-changelog-action
-Generate a CHANGELOG.md file at the root of your repository.
+# Generate CHANGELOG.md Action
+
+Based on https://github.com/github-changelog-generator/github-changelog-generator.
+
+## Example
+
+```yaml
+name: Generate CHANGELOG.md
+
+run-name: Generate CHANGELOG.md (${{ github.sha }})
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate CHANGELOG.md
+        uses: ganiulis/generate-changelog-action@0.1.0
+        with:
+          repository-name: my-repository-name
+```
