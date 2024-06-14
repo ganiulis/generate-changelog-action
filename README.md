@@ -7,8 +7,6 @@ Based on https://github.com/github-changelog-generator/github-changelog-generato
 ```yaml
 name: Generate CHANGELOG.md
 
-run-name: Generate CHANGELOG.md (${{ github.sha }})
-
 on:
   push:
     tags:
