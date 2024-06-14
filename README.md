@@ -12,6 +12,7 @@ run-name: Generate CHANGELOG.md (${{ github.sha }})
 on:
   push:
     tags:
+      - "*"
 
 permissions:
   contents: write
